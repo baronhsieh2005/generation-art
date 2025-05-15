@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Source Code Pro', 'Monaco', 'Consolas', monospace;
+    background: #1E1E1E;
+    overflow: hidden;
+    position: relative;
+}
+
+#control-panel {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 20px;
+    right: 20px;
+    background: rgba(42, 42, 42, 0.9);
+    padding: 15px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+#control-panel:hover {
+    background: rgba(60, 60, 60, 0.95);
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(255, 255, 255, 0.1);
+}
+
+.control-button {
+    display: block;
+    width: 120px;
+    padding: 8px 12px;
+    margin: 5px 0;
+    background: #333;
+    color: #D4D4D4;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    font-size: 12px;
+}
+
+.control-button:hover {
+    background: #569CD6;
+    transform: translateX(5px);
+    box-shadow: 0 2px 10px rgba(86, 156, 214, 0.3);
+}
+
+.control-button:active {
+    background: #4080C7;
+    transform: translateX(5px) scale(0.95);
+}
+
+.color-picker-container {
+    margin: 10px 0;
+    text-align: center;
+}
+
+.color-picker-label {
+    color: #D4D4D4;
+    font-size: 12px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.color-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.color-swatch {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.color-swatch:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.color-swatch.selected {
+    border-color: #FFFFFF;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.color-swatch:active {
+    transform: scale(0.9);
+}
+
+.color-display {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #555;
+    margin-left: 10px;
+    vertical-align: middle;
+    transition: all 0.3s ease;
+}
+
+#canvas-container {
+    position: relative;
+    cursor: none;
+}
+
+#canvas-container:hover {
+    cursor: crosshair;
+}
+
+.mouse-indicator {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #569CD6;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+#canvas-container:hover .mouse-indicator {
+    opacity: 1;
+    animation: attract-pulse 0.8s infinite;
+}
+
+@keyframes attract-pulse {
+    0% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+    50% { transform: translate(-50%, -50%) scale(1.2) rotate(180deg); }
+    100% { transform: translate(-50%, -50%) scale(1) rotate(360deg); }
+}
+
+#info-panel {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(42, 42, 42, 0.9);
+    padding: 10px 15px;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    color: #D4D4D4;
+    font-size: 12px;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+#info-panel:hover {
+    opacity: 1;
+    background: rgba(60, 60, 60, 0.95);
+}
+
+body:not(:focus-within) #control-panel {
+    opacity: 0.6;
+}
+
+body:focus-within #control-panel {
+    opacity: 1;
+}
